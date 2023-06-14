@@ -24,26 +24,26 @@ public class BookManagement {
 
             switch (choice) {
                 case 1:
-                    addBooks(scanner);
+                    addBook(scanner);
                     break;
                 case 2:
-                    displayAllBooks();
+                    showBooks();
                     break;
                 case 3:
-                    sortBooksByInterest();
+                    sort();
                     break;
                 case 4:
-                    removeBook(scanner);
+                    delete(scanner);
                     break;
                 case 5:
-                    searchBooks(scanner);
+                    search(scanner);
                     break;
                 case 6:
-                    updateBook(scanner);
+                    update(scanner);
                     break;
                 case 7:
                     System.out.println("Thoát khỏi chương trình.");
-                    break;
+                    System.exit(0);
                 default:
                     System.out.println("Chức năng không hợp lệ. Vui lòng chọn lại.");
                     break;
@@ -63,7 +63,7 @@ public class BookManagement {
         System.out.println("7. Thoát");
     }
 
-    private static void addBooks(Scanner scanner) {
+    private static void addBook(Scanner scanner) {
         System.out.print("Nhập số lượng sách cần thêm mới: ");
         int numBooks = scanner.nextInt();
         scanner.nextLine(); // Đọc ký tự '\n' dư thừa
@@ -79,7 +79,6 @@ public class BookManagement {
             System.out.println("Nhập thông tin cho sách thứ " + (i + 1) + ":");
             Book book = new Book();
             book.setBookId(nextBookId); // Gán mã sách tự tăng
-            nextBookId++; // Tăng mã sách tiếp theo
             book.inputData();
             library[bookCount] = book;
             bookCount++;
@@ -89,7 +88,7 @@ public class BookManagement {
     }
 
 
-    private static void displayAllBooks() {
+    private static void showBooks() {
         if (bookCount == 0) {
             System.out.println("***********************************************************");
             System.out.println("Thư viện không có sách.");
@@ -105,7 +104,7 @@ public class BookManagement {
         }
     }
 
-    private static void sortBooksByInterest() {
+    private static void sort() {
         if (bookCount == 0) {
             System.out.println("***********************************************************");
             System.out.println("Thư viện không có sách.");
@@ -124,7 +123,7 @@ public class BookManagement {
     }
 
 
-    private static void removeBook(Scanner scanner) {
+    private static void delete(Scanner scanner) {
         System.out.println("***********************************************************");
         System.out.print("Nhập mã sách cần xóa: ");
         int bookId = scanner.nextInt();
@@ -146,7 +145,7 @@ public class BookManagement {
         System.out.println("Xóa sách thành công.");
     }
 
-    private static void searchBooks(Scanner scanner) {
+    private static void search(Scanner scanner) {
         System.out.println("***********************************************************");
         System.out.print("Nhập chuỗi tìm kiếm: ");
         String keyword = scanner.nextLine().toLowerCase();
@@ -169,7 +168,7 @@ public class BookManagement {
         }
     }
 
-    private static void updateBook(Scanner scanner) {
+    private static void update(Scanner scanner) {
         System.out.println("***********************************************************");
         System.out.print("Nhập mã sách cần thay đổi thông tin: ");
         int bookId = scanner.nextInt();
